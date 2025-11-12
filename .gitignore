@@ -1,6 +1,7 @@
 *.zip
 packages/
 ThunderstoreCLI/
+build/
 src/manifest.json
 src/LICENSE
 src/icon.png
