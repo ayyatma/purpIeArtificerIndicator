@@ -1,2 +1,6 @@
 *.zip
 packages/
+ThunderstoreCLI/
+src/manifest.json
+src/LICENSE
+src/icon.png
