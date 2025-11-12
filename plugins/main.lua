@@ -16,6 +16,9 @@ _PLUGIN = PLUGIN
 ---@module 'SGG_Modding-Hades2GameDef-Globals'
 game = rom.game
 
+---@module 'SGG_Modding-SJSON'
+sjson = mods['SGG_Modding-SJSON']
+
 ---@module 'SGG_Modding-ModUtil'
 modutil = mods['SGG_Modding-ModUtil']
 
@@ -29,19 +32,40 @@ reload = mods['SGG_Modding-ReLoad']
 config = chalk.auto('config.lua')
 public.config = config
 
+
+---@module 'game.import'
+import_as_fallback(rom.game)
+
 local function on_ready()
-	import_as_fallback(rom.game)
+	if config.Enabled == false then
+		return
+	end
+
 
 	import("mods/artificer_indicator.lua")
+
 end
 
 local function on_reload()
-	import_as_fallback(rom.game)
+	if config.Enabled == false then
+		return
+	end
+
 	import("imgui.lua")
 end
 
 local loader = reload.auto_single()
 
 modutil.once_loaded.game(function()
-    loader.load(on_ready, on_reload)
+	-- Ensure our mod package (assets placed under the plugin data folder) is loaded into the game's package system
+	-- so references like "<mod-guid>\\ArtificerIcon" work. This mirrors the pattern used by other mods.
+	local package = rom.path.combine(_PLUGIN.plugins_data_mod_folder_path, _PLUGIN.guid)
+	modutil.mod.Path.Wrap("SetupMap", function(base)
+		LoadPackages({ Name = package, })
+		base()
+	end)
+
+	loader.load(on_ready, on_reload)
 end)
+
+

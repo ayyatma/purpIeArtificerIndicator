@@ -2,14 +2,15 @@
   "namespace": "purpIe",
   "name": "Artificer_Indicator",
   "description": "Adds a visual indicator to the MetaToRunUpgrade (Artificer) showing remaining uses.",
-  "version_number": "1.0.0",
+  "version_number": "1.0.1",
   "dependencies": [
-    "Hell2Modding-Hell2Modding-1.0.64",
-    "SGG_Modding-ModUtil-4.0.1",
+    "SGG_Modding-DemonDaemon-1.0.0",
+    "Hell2Modding-Hell2Modding-1.0.73",
     "LuaENVY-ENVY-1.2.0",
-    "SGG_Modding-Chalk-2.1.1",
-    "SGG_Modding-ReLoad-1.0.2"
+    "SGG_Modding-Chalk-2.0.2",
+    "SGG_Modding-ReLoad-1.0.1",
+    "SGG_Modding-ModUtil-4.0.0"
   ],
-  "website_url": "",
+  "website_url": "https://github.com/ayyatma/purpIeArtificerIndicator",
   "FullName": "purpIe-ArtificerIndicator"
 }
